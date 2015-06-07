@@ -75,14 +75,10 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     memset(resultpropkeya, 0, 50);
     toOrigin(propkey1, resultpropkeya);
     property_get(resultpropkeya, resultvalue1);
-    if(strncmp(resultvalue1, "3", 1) == 0 && strlen(resultvalue1) == 2) {
-        property_set("ro.product.model", "MI 3W");
-    } else if (strncmp(resultvalue1, "4", 1) == 0 && strlen(resultvalue1) == 2) {
-        property_set("ro.product.model", "MI 4");
-    }
-    property_set("ro.build.product", "cancro");
-    property_set("ro.product.device", "cancro");
-    property_set("ro.build.description", "cancro-userdebug 5.1.1 LMY48B 5.5.20 test-keys");
-    property_set("ro.build.fingerprint", "Xiaomi/cancro/cancro:5.1.1/LMY48B/5.5.20:userdebug/test-keys");
+    property_set("ro.product.model", "MI NOTE LTE");
+    property_set("ro.build.product", "virgo");
+    property_set("ro.product.device", "virgo");
+    property_set("ro.build.description", "virgo-userdebug 5.1.1 LMY48B 5.5.20 test-keys");
+    property_set("ro.build.fingerprint", "Xiaomi/virgo/virgo:5.1.1/LMY48B/5.5.20:userdebug/test-keys");
     free(resultpropkeya);
 }

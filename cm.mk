@@ -19,32 +19,23 @@ TARGET_SCREEN_WIDTH := 1080
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from cancro device
-$(call inherit-product, device/xiaomi/cancro/cancro.mk)
-
-# Enhanced NFC
-$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
+# Inherit from virgo device
+$(call inherit-product, device/xiaomi/virgo/virgo.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_NAME := cm_cancro
-PRODUCT_DEVICE := cancro
+PRODUCT_NAME := cm_virgo
+PRODUCT_DEVICE := virgo
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MANUFACTURER := Xiaomi
-PRODUCT_MODEL := MI 3W
+PRODUCT_MODEL := MI NOTE LTE
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 
-ifeq ($(MI3_BUILD),true)
-TARGET_UNOFFICIAL_BUILD_ID := mi3
-endif
-
-ifeq ($(MI4_BUILD),true)
-TARGET_UNOFFICIAL_BUILD_ID := mi4
-endif
+TARGET_UNOFFICIAL_BUILD_ID := minote
 
 # Build prop overrides
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE="cancro" PRODUCT_NAME="cancro" BUILD_FINGERPRINT="Xiaomi/cancro/cancro:5.1.1/LMY48B/5.5.20:userdebug/test-keys" PRIVATE_BUILD_DESC="cancro-userdebug 5.1.1 LMY48B 5.5.20 test-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE="virgo" PRODUCT_NAME="virgo" BUILD_FINGERPRINT="Xiaomi/virgo/virgo:5.1.1/LMY48B/5.5.20:userdebug/test-keys" PRIVATE_BUILD_DESC="virgo-userdebug 5.1.1 LMY48B 5.5.20 test-keys"

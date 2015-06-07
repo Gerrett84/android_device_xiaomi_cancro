@@ -15,10 +15,10 @@
 #
 BOARD_VENDOR := xiaomi
 
-CANCRO_PATH := device/xiaomi/cancro
+VIRGO_PATH := device/xiaomi/virgo
 
 # Include path
-TARGET_SPECIFIC_HEADER_PATH := $(CANCRO_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH := $(VIRGO_PATH)/include
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
@@ -42,7 +42,7 @@ COMMON_GLOBAL_CFLAGS += -D__ARM_USE_PLD -D__ARM_CACHE_LINE_SIZE=64  -DUSE_RIL_VE
 COMMON_GLOBAL_CPPFLAGS += -DNO_SECURE_DISCARD -DUSE_RIL_VERSION_10
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK := $(CANCRO_PATH)/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := $(VIRGO_PATH)/mkbootimg.mk
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 vmalloc=340M androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE        := 0x00000000
@@ -55,12 +55,12 @@ TARGET_KERNEL_CONFIG := cancro_user_defconfig
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_LIBINIT_DEFINES_FILE := $(CANCRO_PATH)/init/init_cancro.c
+TARGET_LIBINIT_DEFINES_FILE := $(VIRGO_PATH)/init/init_virgo.c
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_POWERHAL_VARIANT := qcom
-TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(CANCRO_PATH)/power/power_ext.c
+TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(VIRGO_PATH)/power/power_ext.c
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -73,12 +73,12 @@ AUDIO_FEATURE_ENABLED_FM := true
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(CANCRO_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VIRGO_PATH)/bluetooth
 QCOM_BT_USE_SMD_TTY := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # Graphics
-BOARD_EGL_CFG := $(CANCRO_PATH)/configs/egl.cfg
+BOARD_EGL_CFG := $(VIRGO_PATH)/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_GRALLOC_USES_ASHMEM := false
@@ -134,7 +134,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Recovery
 RECOVERY_FSTAB_VERSION := 2
-TARGET_RECOVERY_FSTAB := $(CANCRO_PATH)/rootdir/root/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(VIRGO_PATH)/rootdir/root/fstab.qcom
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
@@ -149,13 +149,13 @@ BOARD_RECOVERY_SWIPE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 
 # CM Hardware
-BOARD_HARDWARE_CLASS += $(CANCRO_PATH)/cmhw
+BOARD_HARDWARE_CLASS += $(VIRGO_PATH)/cmhw
 
 # No old RPC for prop
 TARGET_NO_RPC := true
 
 # GPS HAL lives here
-TARGET_GPS_HAL_PATH := $(CANCRO_PATH)/gps
+TARGET_GPS_HAL_PATH := $(VIRGO_PATH)/gps
 TARGET_PROVIDES_GPS_LOC_API := true
 
 # Use HW crypto for ODE
