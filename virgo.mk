@@ -23,9 +23,12 @@ PRODUCT_COPY_FILES += \
 
 # Keylayout
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/system/usr/keylayout/atmel-maxtouch.kl:system/usr/keylayout/atmel-maxtouch.kl \
     $(LOCAL_PATH)/rootdir/system/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+    $(LOCAL_PATH)/rootdir/system/usr/keylayout/atmel-maxtouch.kl:system/usr/keylayout/atmel-maxtouch.kl \
+    $(LOCAL_PATH)/rootdir/system/usr/keylayout/cyttsp_button.kl:system/usr/keylayout/cyttsp_button.kl \
+    $(LOCAL_PATH)/rootdir/system/usr/keylayout/fts.kl:system/usr/keylayout/fts.kl \
     $(LOCAL_PATH)/rootdir/system/usr/keylayout/msm8974-taiko-mtp-snd-card_Button_Jack.kl:system/usr/keylayout/msm8974-taiko-mtp-snd-card_Button_Jack.kl \
+    $(LOCAL_PATH)/rootdir/system/usr/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
     $(LOCAL_PATH)/rootdir/system/usr/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl
 
 PRODUCT_PACKAGES += camera.msm8974
