@@ -1,5 +1,5 @@
 not working:
 - sound
 - ril
-- camera
+- camera (should be fixed)
 - maybe more ..
