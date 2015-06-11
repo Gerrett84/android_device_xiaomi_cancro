@@ -282,16 +282,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     keystore.msm8974
 
-# FM Radio
-PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    hw.fm.internal_antenna=true
-
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
