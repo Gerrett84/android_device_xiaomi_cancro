@@ -29,6 +29,25 @@ ro.data.large_tcp_window_size=true
 ro.qualcomm.cabl=0
 ro.qcom.ad=1
 ro.qcom.ad.calib.data=/system/etc/calib.cfg
+ro.qcom.ad.sensortype=2
 
-#For specail cdma card sms issue
+# hifi
+ro.audio.hifi=true
+persist.audio.hifi=false
+persist.audio.hifi.volume=73
+
+# Enalbe modem fast dormancy function
+persist.env.fastdorm.enabled=true
+persist.radio.data_no_toggle=1
+persist.fd.scroff.timer=3000
+persist.fd.scron.timer=10000
+
+# Disable DSD in this product line due to some DSD limitation
+persist.radio.dont_use_dsd=true
+# For specail cdma card sms issue
 persist.radio.force_on_dc=true
+# For sglte CT's operator name
+persist.radio.sglte.eons_domain=ps
+# default network
+ro.telephony.default_network=20
+persist.radio.multisim.config=dsds
