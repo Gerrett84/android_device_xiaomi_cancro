@@ -55,8 +55,9 @@ on fs
     mkdir /persist/data 0700 system system
     mkdir /persist/data/sfs 0700 system system
     mkdir /persist/data/tz 0700 system system
+    mkdir /persist/audio 0771 media audio
 
-    mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
+    mount vfat ${LOCAL_ENV_CURR_MODEM} /firmware wait ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system
@@ -256,12 +257,19 @@ on property:sys.ims.QMI_DAEMON_STATUS=1
 service ims_rtp_daemon /system/bin/ims_rtp_daemon
    class main
    user system
-   socket ims_rtpd stream 0660 system ims
-   group ims net_raw diag qcom_diag log
+   socket ims_rtpd stream 0660 system radio
+   group radio net_raw diag qcom_diag log
+   disabled
+
+service imscmservice /system/bin/imscmservice
+   class main
+   user system
+   group radio net_raw diag qcom_diag log
    disabled
 
 on property:sys.ims.DATA_DAEMON_STATUS=1
-    start ims_rtp_daemon
+   start ims_rtp_daemon
+   start imscmservice
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
@@ -339,3 +347,11 @@ on property:persist.sys.display_idle=1
     write /sys/devices/virtual/graphics/fb0/msm_fb_dispparam 0xA0000
 on property:persist.sys.display_idle=0
     write /sys/devices/virtual/graphics/fb0/msm_fb_dispparam 0xF0000
+
+on property:persist.radio.modem=LTE-X5-ALL
+    setprop telephony.lteOnCdmaDevice 1
+    setprop persist.radio.disable_flexmap 0
+    setprop ro.sys.oosenhance.timer 20000
+on property:persist.radio.modem=LTE-X5
+    setprop persist.radio.disable_flexmap 1
+    setprop ro.sys.oosenhance.timer 20000
