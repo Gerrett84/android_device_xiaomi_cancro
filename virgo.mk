@@ -34,6 +34,10 @@ PRODUCT_COPY_FILES += \
 # Camera Wrapper
 PRODUCT_PACKAGES += camera.msm8974
 
+# Quick charging
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.usb.hvdcp.detect=true
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
