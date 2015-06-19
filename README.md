@@ -1,5 +1,9 @@
 not working:
-- sound
+- Phone speaker doesnt work
 - ril
-- camera (should be fixed)
-- maybe more ..
+- rotation
+
+
+Kernel source :
+
+https://github.com/mi3-dev/android_kernel_xiaomi_msm8x74pro
