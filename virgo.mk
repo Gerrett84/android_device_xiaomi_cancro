@@ -268,6 +268,10 @@ PRODUCT_PACKAGES += \
     mke2fs_static \
     resize2fs_static
 
+# Extra tools
+PRODUCT_PACKAGES += \
+    vim
+
 PRODUCT_PACKAGES += \
     libxml2
 
@@ -295,9 +299,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
+    libebtc \
+    libcurl \
     curl \
     libnl_2 \
-    libbson
+    libbson \
+    libcnefeatureconfig
+
+#IPTABLES
+PRODUCT_PACKAGES += \
+    libiptc \
+    libext \
+    iptables
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -339,6 +352,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.wfd.virtual=0 \
     persist.sys.media.use-awesome=true \
     debug.mdpcomp.4k2kSplit=1
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.ltm_enable=true \
+    assertdisplay.value=128 \
+    persist.sys.gamut_mode=0
 
 # Enable Adaptive Multi-Rate Wideband
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -246,11 +246,14 @@ on boot
     # Vibrator permissions
     chown system system /sys/vibrator/pwmvalue
     chmod 0644 /sys/vibrator/pwmvalue
-	
+
     chown system system /sys/devices/virtual/graphics/fb0/rgb
     chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
 
-# Enable manual network selection function and distinguish 2G/3G/4G
+    chown system system /sys/class/rtc/rtc0/wakealarm
+    chmod 0666 /sys/class/rtc/rtc0/wakealarm
+
+    # Enable manual network selection function and distinguish 2G/3G/4G
     setprop persist.radio.rat_on combine
 
     #charger
@@ -266,8 +269,8 @@ on boot
     chmod 0664 /sys/class/power_supply/battery/voltage_min
     chmod 0664 /sys/module/qpnp_charger/parameters/charger_monitor
 
-# msm specific files that need to be created on /data
-on post-fs-data
+    # msm specific files that need to be created on /data
+    on post-fs-data
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
 
@@ -348,7 +351,8 @@ on post-fs-data
 
     mkdir /data/audio/ 0770 media audio
 
-    setprop vold.post_fs_data_done 1
+    chown system system /sys/vibrator/pwmvalue
+    chmod 0644 /sys/vibrator/pwmvalue
 
     # Adjust vibrator amplitude
     write /sys/class/timed_output/vibrator/amp 95
@@ -358,33 +362,7 @@ on post-fs-data
     chmod 0664 /sys/class/timed_output/vibrator/amp
     restorecon /sys/class/timed_output/vibrator/amp
 
-on charger
-    wait /dev/block/platform/msm_sdcc.1/by-name/system
-    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/system /system wait ro barrier=1
-    start irsc_util
-    start rmt_storage
-    # Enable Power modes and set the CPU Freq Sampling rates
-    write /sys/module/lpm_levels/enable_low_power/l2 2
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu1/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu2/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu3/power_collapse/suspend_enabled 1
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled 1
-    write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "conservative"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "conservative"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "conservative"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "conservative"
-    write /sys/module/msm_thermal/core_control/enabled 1
-    write /sys/devices/system/cpu/cpu1/online 0
-    write /sys/devices/system/cpu/cpu2/online 0
-    write /sys/devices/system/cpu/cpu3/online 0
-    start hvdcp
-    start charger_monitor
-    class_start charger
+    setprop vold.post_fs_data_done 1
 
     #Create a folder for SRS to be able to create a usercfg file
     mkdir /data/data/media 0770 media media
@@ -924,6 +902,14 @@ service modem_dump /system/bin/subsystem_ramdump 2 0
 on property:persist.radio.ramdump_sdcard=1
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
     start modem_dump
+
+service qlogd /system/xbin/qlogd
+    class main
+    disabled
+on property:persist.sys.qlogd=1
+    start qlogd
+on property:persist.sys.qlogd=0
+    stop qlogd
 
 on property:service.bootanim.exit=1
     setprop sys.perf.profile 1
