@@ -8,10 +8,6 @@ LOCAL_PATH := device/xiaomi/virgo
 
 PRODUCT_CHARACTERISTICS := nosdcard
 
-# TRWP recovery
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab
-
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
@@ -41,6 +37,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
+    recovery_fstab.qcom \
     init.qcom.rc \
     init.target.rc \
     init.qcom.usb.rc \
